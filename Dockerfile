@@ -11,13 +11,11 @@ RUN tar -xzvf openjdk-11+28_linux-x64_bin.tar.gz
 RUN rm openjdk-11+28_linux-x64_bin.tar.gz
 RUN tar -xzvf apache-tomcat-9.0.80.tar.gz
 RUN rm apache-tomcat-9.0.80.tar.gz
-COPY target/foodies.war apache-tomcat-9.0.80/webapps
+COPY target/foodies.war ${TOMCAT_HOME}/webapps
 #COPY tomcat-start.sh .
 #RUN chmod u+x tomcat-start.sh
 #ENTRYPOINT [ "./tomcat-start.sh" ]
-
 COPY run.sh .
 RUN chmod u+x run.sh
 ENTRYPOINT [ "./run.sh" ]
-
 CMD [ "tail -f /dev/null" ]
